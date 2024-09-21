@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <title>Flores Amarillas</title>
+   
+</head>
+    
+
+<body onclick="PlayAudio()">
+   
+    <div id="youtube-player"></div>
+    <div class="background"></div>
+<div class="flower">
+        <div class="text-above"><h3>Para ti Iza</h3></div>
+        <div class="mid">
+        </div>
+        <div class="Petal1 p1">
+        </div>
+        <div class="Petal1 p2">
+        </div>
+        <div class="Petal1 p3">
+        </div>
+        <div class="Petal1 p4">
+        </div>
+        <div class="Petal2 p1">
+        </div>
+        <div class="Petal2 p2">
+        </div>
+        <div class="Petal2 p3">
+        </div>
+        <div class="Petal2 p4">
+        </div>
+        <div class="Petal3 p1">
+        </div>
+        <div class="Petal3 p2">
+        </div>
+        <div class="Petal3 p3">
+        </div>
+        <div class="Petal3 p4">
+        </div>
+        <div class="text-below">🐝🐝<h3></h3> </div>
+</div>
+    <script>
+        var player;
+        var isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: 'S7gMzYqXIZc',
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    showinfo: 0,
+                    modestbranding: 1,
+                    rel: 0,
+                    enablejsapi: 1,
+                    start: 0,
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Pausar el video en espera de la interacción del usuario
+            event.target.pauseVideo();
+
+            // Agregar un event listener para hacer clic en cualquier parte de la pantalla
+            document.body.addEventListener('click', function() {
+                if (!isPlaying) {
+                    event.target.playVideo();
+                    isPlaying = true;
+                    changeBackground();
+                }
+            });
+        }
+
+        function changeBackground() {
+            // Cambiar el fondo con la música (aquí puedes personalizar el fondo)
+            var background = document.querySelector('.background');
+            var colors = ['#FF5733', '#FFC300', '#33FF57', '#339CFF'];
+            var currentIndex = 0;
+
+            setInterval(function() {
+                background.style.backgroundColor = colors[currentIndex];
+                currentIndex = (currentIndex + 1) % colors.length;
+            }, 1000); // Cambiar el color cada segundo
+        }
+    </script>
+
+<audio id="musica1" loop>   
+    <source src="musica/Floricienta — Flores Amarillas [Letra] - armxndo (youtube).mp3" type="audio/mpeg">    
+    Este navegador no acepta formato de audio
+  </audio> 
+  
+  <script>
+    function PlayAudio() {
+        document.getElementById("musica1") .play();
+    }
+  </script>
+</body>
+
+</html>
